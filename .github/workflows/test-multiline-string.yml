@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'
+        description: 'Version (semver)'
         required: true
       chartVersion:
-        description: 'Chart Version'
+        description: 'Chart Version (semver)'
         required: true
 
 jobs:
