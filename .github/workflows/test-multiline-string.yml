@@ -17,9 +17,14 @@ jobs:
     steps:
       - name: Set Env Variable
         run: |
-          description="sldfkjsdf
-          look"
-          echo DESCRIPTION=\"$description\" > $GITHUB_ENV
+          GITHUB_HEADER="Accept: application/vnd.github.v3+json"
+          MILESTONE_BASE_URL=https://api.github.com/repos/xin-hedera/hedera-mirror-node/milestones
+          
+          description=$(curl -s -H "$GITHUB_HEADER" $MILESTONE_BASE_URL/2 | jq -r '.description' | sed 's/\r$//')
+          echo DESCRIPTION1=\"$description\" > $GITHUB_ENV
+          echo DESCRIPTION2=\""$description"\" > $GITHUB_ENV
       
       - name: Show Env Variable
-        run: echo $DESCRIPTION
+        run: |
+          echo "$DESCRIPTION1"
+          echo "$DESCRIPTION2"
