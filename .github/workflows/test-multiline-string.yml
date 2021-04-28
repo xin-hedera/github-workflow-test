@@ -1,0 +1,25 @@
+name: Test Multiline String
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+      chartVersion:
+        description: 'Chart Version'
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Set Env Variable
+        run: |
+          description="sldfkjsdf
+          look"
+          echo "DESCRIPTION=\"$description\"" > $GITHUB_ENV
+      
+      - name: Show Env Variable
+        run: echo "$DESCRIPTION"
