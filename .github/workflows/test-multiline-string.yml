@@ -19,7 +19,7 @@ jobs:
         run: |
           description="sldfkjsdf
           look"
-          echo DESCRIPTION=\"$description\" > $GITHUB_ENV
+          echo "DESCRIPTION=$description" > $GITHUB_ENV
       
       - name: Show Env Variable
         run: echo "$DESCRIPTION"
