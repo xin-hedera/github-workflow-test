@@ -22,7 +22,7 @@ jobs:
           
           description=$(curl -s -H "$GITHUB_HEADER" $MILESTONE_BASE_URL/2 | jq -r '.description' | sed 's/\r$//')
           echo DESCRIPTION1=\"$description\" > $GITHUB_ENV
-          echo DESCRIPTION2=\""$description"\" > $GITHUB_ENV
+          echo "DESCRIPTION2=\"$description\"" > $GITHUB_ENV
       
       - name: Show Env Variable
         run: |
