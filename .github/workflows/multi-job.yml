@@ -1,0 +1,27 @@
+name: Multiple Jobs
+
+on:
+  workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      name: ${{ env.NAME }}
+      value: ${{ env.VALUE }}
+    
+    steps:
+      - name: Set Name
+        run: echo "NAME=foobar" >> $GITHUB_ENV
+      
+      - name: Set Value
+        run: echo "VALUE=100" >> $GITHUB_ENV
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    
+    steps:
+      - name: Show Job1 Output
+        run: |
+          echo ${{ needs.job1.outputs.name }}
+          echo ${{ needs.job1.outputs.value }}
