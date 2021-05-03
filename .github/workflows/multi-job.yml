@@ -16,6 +16,14 @@ jobs:
       
       - name: Set Value
         run: echo "VALUE=100" >> $GITHUB_ENV
+      
+      - name: Set multiple env variables
+        run: |
+          cat >> $GITHUB_ENV <<EOF
+          COLOR=blue
+          LOCATION=north
+          EOF
+          
   job2:
     runs-on: ubuntu-latest
     needs: job1
