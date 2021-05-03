@@ -24,6 +24,18 @@ jobs:
           LOCATION=north
           EOF
           
+          NEXT_CHART_VERSION_SNAPSHOT=0.33.0-SNAPSHOT
+          NEXT_VERSION_SNAPSHOT=0.50.0-SNAPSHOT
+          RELEASE_BRANCH=release/0.50
+          RELEASE_TAG=v0.50.0-rc1
+          
+          cat >> $GITHUB_ENV <<EOF
+          NEXT_CHART_VERSION_SNAPSHOT=$NEXT_CHART_VERSION_SNAPSHOT
+          NEXT_VERSION_SNAPSHOT=$NEXT_VERSION_SNAPSHOT
+          RELEASE_BRANCH=$RELEASE_BRANCH
+          RELEASE_TAG=$RELEASE_TAG
+          EOF
+          
   job2:
     runs-on: ubuntu-latest
     needs: job1
