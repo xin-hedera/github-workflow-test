@@ -35,10 +35,14 @@ jobs:
           RELEASE_BRANCH=$RELEASE_BRANCH
           RELEASE_TAG=$RELEASE_TAG
           EOF
+      
+      - name: Fail it
+        run: exit 1
           
   job2:
     runs-on: ubuntu-latest
     needs: job1
+    if: always()
     
     steps:
       - name: Show Job1 Output
