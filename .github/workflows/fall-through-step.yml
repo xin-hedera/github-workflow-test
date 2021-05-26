@@ -1,0 +1,42 @@
+name: Fall Through Step
+
+on:
+  workflow_dispatch
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+   
+    steps:
+      - name: Set Name
+        run: echo "NAME=foobar" >> $GITHUB_ENV
+      
+      - name: Set Value
+        run: echo "VALUE=100" >> $GITHUB_ENV
+      
+      - name: Set multiple env variables
+        run: |
+          cat >> $GITHUB_ENV <<EOF
+          COLOR=blue
+          LOCATION=north
+          EOF
+          
+          NEXT_CHART_VERSION_SNAPSHOT=0.33.0-SNAPSHOT
+          NEXT_VERSION_SNAPSHOT=0.50.0-SNAPSHOT
+          RELEASE_BRANCH=release/0.50
+          RELEASE_TAG=v0.50.0-rc1
+          
+          cat >> $GITHUB_ENV <<EOF
+          NEXT_CHART_VERSION_SNAPSHOT=$NEXT_CHART_VERSION_SNAPSHOT
+          NEXT_VERSION_SNAPSHOT=$NEXT_VERSION_SNAPSHOT
+          RELEASE_BRANCH=$RELEASE_BRANCH
+          RELEASE_TAG=$RELEASE_TAG
+          EOF
+      
+      - name: Fail it
+        run: exit 1
+      
+      - name: Fallthrough
+        if: always()
+        run: echo "aha!"
+          
