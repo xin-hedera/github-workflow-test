@@ -37,6 +37,6 @@ jobs:
         run: exit 1
       
       - name: Fallthrough
-        if: ${{ failure() && env.FOOBAR == "" }}
+        if: ${{ failure() && env.FOOBAR == '' }}
         run: echo "aha!"
           
